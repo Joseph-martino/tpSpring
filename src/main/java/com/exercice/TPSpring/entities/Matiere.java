@@ -19,7 +19,7 @@ public class Matiere {
     @Size(max = 20)
     private String difficulte;
 
-    @ManyToMany(mappedBy = "matieres")
+    @ManyToMany
     private List<Formateur> formateurs;
 
     public Matiere() {

@@ -1,6 +1,7 @@
 package com.exercice.TPSpring.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -9,9 +10,11 @@ public class Adresse {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @Column(nullable = false)
+    @Column
+    @NotNull
     @Size(max = 50)
     private String street;
+    @Column
     @Size(max = 50)
     private String complement;
     @Column(nullable = false)

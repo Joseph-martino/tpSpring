@@ -6,8 +6,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
+@Entity
+@Table(name="formateur")
 public class Formateur extends Personne {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     @Column( name = "dateEmbauche", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dateEmbauche;
@@ -17,8 +22,8 @@ public class Formateur extends Personne {
     private String statusInterne;
     @Column
     private String statusExterne;
-    @Column
-    private List<Stagiaire> stagiaires = new ArrayList<Stagiaire>();
+    @OneToMany(mappedBy = "formateur")
+    private List<Stagiaire> stagiaires;
 
     @ManyToMany
     @JoinTable(name="skill", joinColumns = @JoinColumn(name="person_id"),
@@ -30,13 +35,22 @@ public class Formateur extends Personne {
     }
 
     public Formateur(long id, String civilite, String nom, String prenom, String email, Adresse adresse, Date dateEmbauche, long experience, String statusInterne, String statusExterne, List<Stagiaire> stagiaires, List<Matiere> matieres) {
-        super(id, civilite, nom, prenom, email, adresse);
+        super(civilite, nom, prenom, email, adresse);
+        this.id = id;
         this.dateEmbauche = dateEmbauche;
         this.experience = experience;
         this.statusInterne = statusInterne;
         this.statusExterne = statusExterne;
         this.stagiaires = stagiaires;
         this.matieres = matieres;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public List<Matiere> getMatieres() {
