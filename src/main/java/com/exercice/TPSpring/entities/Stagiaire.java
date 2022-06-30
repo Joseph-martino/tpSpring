@@ -13,7 +13,7 @@ public class Stagiaire extends Personne{
 
     }
 
-    public Stagiaire(long id, String civilite, String nom, String prenom, String email, String adresse, Date dateDeNaissance, Formateur formateur) {
+    public Stagiaire(long id, String civilite, String nom, String prenom, String email, Adresse adresse, Date dateDeNaissance, Formateur formateur) {
         super(id, civilite, nom, prenom, email, adresse);
         this.dateDeNaissance = dateDeNaissance;
         this.formateur = formateur;
